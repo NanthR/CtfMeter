@@ -12,13 +12,19 @@ chrome.runtime.onMessage.addListener(
         
       } else {
         let m = items['ctftime'];
-        if(m.some(data => data.url !== url && data.difficulty != difficulty && done !== done)) {
-          m.push({'url': url, 'title': title, 'done': done, 'difficulty': difficulty})
+        const val = m.findIndex(data => data.url === url);
+        console.log(val);
+        if(val === -1) {
+          m.push({'url': url, 'difficulty': difficulty, 'done': done, 'title': title})
           chrome.storage.sync.set({'ctftime': m});
         }
+        else {
+          m[val] = {'url': url, 'difficulty': difficulty, 'done': done, 'title': title}
+          chrome.storage.sync.set({'ctftime': m})
+        }
       }
+      console.log(items['ctftime']);
     });  
   }
-  console.log(message);
   return true;
 });
