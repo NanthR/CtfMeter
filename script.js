@@ -1,6 +1,24 @@
-const matches = document.documentElement.getElementsByTagName('a');
-console.log(matches.length);
-// chrome.runtime.sendMessage({
-//   url: window.location.href,
-//   count: matches.length
-// })
+chrome.runtime.onMessage.addListener(
+    function(message, sender, sendResponse) {
+      const difficulty = message['difficulty'];
+      const done = message['done'];
+      const url = window.location.href;
+      const title = document.title.split('/').slice(1,-1).join('-');
+      if(message.type === "addData") {
+        chrome.storage.sync.get(['ctftime'], function(items) {
+        if(Object.keys(items).length === 0 && items.constructor === Object) {
+        let m = [{'url': url, 'title': title, 'done': done, 'difficulty': difficulty}];
+        chrome.storage.sync.set({'ctftime': m});
+        
+      } else {
+        let m = items['ctftime'];
+        if(m.some(data => data.url !== url && data.difficulty != difficulty && done !== done)) {
+          m.push({'url': url, 'title': title, 'done': done, 'difficulty': difficulty})
+          chrome.storage.sync.set({'ctftime': m});
+        }
+      }
+    });  
+  }
+  console.log(message);
+  return true;
+});

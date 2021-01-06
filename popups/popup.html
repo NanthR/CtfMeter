@@ -11,22 +11,23 @@
         <h1>Welcome to Geekometer</h1>
         <p class="rate">Rate difficulty:</p>
         <label class="container">Easy
-            <input type="radio" checked="checked" name="difficulty">
+            <input type="radio" name="difficulty" value="easy" id = "easy">
             <span class="checkStyle"></span>
         </label>
         <label class="container">Medium
-            <input type="radio" name="difficulty">
+            <input type="radio" name="difficulty" value="medium" id = "medium">
             <span class="checkStyle"></span>
         </label>
         <label class="container">Difficult
-            <input type="radio" name="difficulty">
+            <input type="radio" name="difficulty" value="difficult" id = "difficult">
             <span class="checkStyle"></span>
         </label>
         <div class="completed">
             <label class="checkContainer" for="done">DONE </label>  
-            <input type="checkbox" id="done", name = "done">
+            <input type="checkbox" id="done" name = "done">
         </div>
+        <button class='bookmarkbtn'>ADD BOOKMARK</button>
     </div>
-    <!-- <script src="onPop.js"></script> -->
+    <script src="/onPop.js"></script>
 </body>
 </html>
