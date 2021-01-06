@@ -67,6 +67,76 @@ body {
 #data table tr th:nth-of-type(4) {
   width: 5%;
 }
+#table-body tr td:nth-of-type(5) {
+  width: 2%;
+  cursor: pointer;
+}
+
+#table-body tr td:nth-of-type(4) {
+  cursor: pointer;
+}
+
+#table-body tr td .delete-button {
+  float: right;
+  transform: translate(15px, 2px);
+  cursor: pointer;
+  width: 50px;
+}
+
+#table-body tr td .delete-button::after {
+  content: "Delete";
+  font-size: 14px;
+  color: white;
+  position: absolute;
+  transition: width 0.2s;
+  width: 0;
+  height: 20px;
+  overflow: hidden;
+  opacity: 0;
+  background-color: black;
+  border: solid 1px black;
+}
+#table-body tr td .delete-button:hover::after {
+  width: 60px;
+  height: 20px;
+  opacity: 0.8;
+  padding-top: 2px;
+  padding-left: 22px;
+  animation: width-change 0.1s;
+  transform: translate(2px, -3px);
+}
+
+#table-body tr td:nth-of-type(4)::after {
+  /* background-color: lightcoral; */
+  content: attr(data-status);
+  font-size: 14px;
+  color: white;
+  position: absolute;
+  transition: width 0.2s;
+  width: 0;
+  height: 20px;
+  overflow: hidden;
+  opacity: 0;
+  background-color: black;
+  border: solid 1px black;
+}
+#table-body tr td:nth-of-type(4):hover::after {
+  width: 160px;
+  height: 25px;
+  opacity: 0.8;
+  padding-top: 10px;
+  animation: width-change 0.1s;
+  transform: translate(2px, -2px);
+}
+
+@keyframes width-change {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
 
 /* Inc size of title */
 #data table tr th:nth-of-type(2) {
@@ -154,7 +224,6 @@ td.red {
 
 #filter .category .items:hover {
   height: 400px;
-  color: green;
 }
 
 #filter .category div.items.active {

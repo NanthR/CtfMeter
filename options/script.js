@@ -78,11 +78,11 @@ const addData = (data) => {
       <td>${index + 1}</td>
       <td><a href="${d.url}" target="_blank" rel="noopener noreferrer">${
         d.name
-      }</a></td>
+      }</a> <span class="delete-button"><img src="./assets/delete.svg" alt="" height="18px" width="18px"></span></td>
       <td>${d.difficulty}</td>
-      <td class="${d.finished ? "green" : "red"}">${
-        d.finished ? "&#10003" : "&#10005"
-      }</td>
+      <td class="${d.finished ? "green" : "red"}" data-status= 'Mark as ${
+        d.finished ? "un-done" : "done"
+      }'>${d.finished ? "&#10003" : "&#10005"}</td>
     </tr>`),
     ""
   );
@@ -131,4 +131,24 @@ const filterElements = () => {
     return bool;
   });
   document.querySelector("#table-body").innerHTML = addData(filteredData);
+};
+
+const handleUpdates = () => {
+  document
+    .querySelectorAll("#table-body tr td:nth-of-type(4)")
+    .forEach((elem) => {
+      elem.addEventListener("click", function (_) {
+        console.log(this);
+        // Change element
+      });
+    });
+
+  document
+    .querySelectorAll("#table-body tr td:nth-of-type(2)")
+    .forEach((elem) => {
+      elem.children[1].addEventListener("click", function () {
+        // Handle delete
+        console.log(elem.children[0].href);
+      });
+    });
 };
