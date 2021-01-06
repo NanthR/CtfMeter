@@ -4,9 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geekometer</title>
+    <link rel="stylesheet" href="./css/popupStyles.css">
 </head>
 <body>
-    <h1>Welcome to Geekometer</h1>
+    <div class="parent">
+        <h1>Welcome to Geekometer</h1>
+        <p class="rate">Rate difficulty:</p>
+        <label class="container">Easy
+            <input type="radio" checked="checked" name="difficulty">
+            <span class="checkStyle"></span>
+        </label>
+        <label class="container">Medium
+            <input type="radio" name="difficulty">
+            <span class="checkStyle"></span>
+        </label>
+        <label class="container">Difficult
+            <input type="radio" name="difficulty">
+            <span class="checkStyle"></span>
+        </label>
+        <div class="completed">
+            <label class="checkContainer" for="done">DONE </label>  
+            <input type="checkbox" id="done", name = "done">
+        </div>
+    </div>
     <!-- <script src="onPop.js"></script> -->
 </body>
 </html>
