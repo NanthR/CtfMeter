@@ -108,7 +108,7 @@ document.querySelectorAll("#filter .category input").forEach((inp, index) => {
         ? filters.difficulty.push(this.name)
         : filters.difficulty.splice(filters.difficulty.indexOf(this.name), 1);
     } else {
-      let bool = this.name == done ? true : false;
+      let bool = this.name == "done" ? true : false;
       this.checked
         ? filters.finished.push(bool)
         : filters.finished.splice(filters.finished.indexOf(bool), 1);
