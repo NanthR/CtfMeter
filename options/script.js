@@ -15,6 +15,7 @@ const updater = () => {
       <td class="${d.done ? 'green' : 'red'}" data-status= 'Mark as ${
             d.done ? 'un-done' : 'done'
           }'>${d.done ? '&#10003' : '&#10005'}</td>
+          <td>${d.timeCompleted || "-"}</td>
     </tr>`),
         ''
       );
