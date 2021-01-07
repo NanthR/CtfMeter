@@ -38,7 +38,11 @@ const updater = () => {
       return null;
     }
     const upload = document.querySelector('.upload');
+    const input = document.querySelector('#selectFiles');
     upload.addEventListener('click', () => {
+      input.click();  
+    });
+    input.addEventListener('change', () => {
       let files = document.getElementById('selectFiles').files;
       if(files.length <= 0) {
         alert("Select a file first");

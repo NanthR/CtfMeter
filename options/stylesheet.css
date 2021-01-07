@@ -277,4 +277,21 @@ input[type="checkbox"]:checked + label:before {
   color: #fff;
 }
 
+.buttonContainer {
+  display: flex;
+}
+
+button {
+  padding: 10px;
+  background: white;
+  color: black;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+}
+.header {
+  margin-right: 2px;
+}
+
 /* END OF CHECKBOX CUSTOM STYLE */
