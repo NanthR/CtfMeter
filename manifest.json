@@ -14,11 +14,16 @@
         "default_title": "Geeks",
         "default_popup": "popups/popup.html"
       },
-      "background": {
-        "scripts": ["background.js"]
-      },
       "permissions": ["tabs", "storage"],
-      "options_page" :"options/index.html",
+      "options_ui" : {
+        "page": "options/index.html",
+        "open_in_tab": true
+      },
+      "browser_specific_settings": {
+         "gecko": {
+            "id": "example@example.com"
+              }
+      },
       "icons" : {
         "16" : "./icon.png"
       }

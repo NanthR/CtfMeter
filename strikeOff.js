@@ -5,7 +5,7 @@ anchor_tags.forEach((tag) => {
        let relative = tag.getAttribute('href');
        let link = (absolute(base, relative));
        let absoluteLink = link.replace(/(https?:\/\/)|(\/)+/g, "$1$2");
-       chrome.storage.sync.get('ctftime', function(items) {
+       browser.storage.sync.get('ctftime', function(items) {
             if(Object.keys(items).length != 0) {
                 let m = items['ctftime'];
                 val = m.findIndex(data => data.url === absoluteLink);

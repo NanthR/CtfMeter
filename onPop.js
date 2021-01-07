@@ -1,8 +1,8 @@
-chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
   url = tabs[0].url;
   let empty = false;
   let val = -1;
-  chrome.storage.sync.get('ctftime', function (items) {
+  browser.storage.sync.get('ctftime', function (items) {
     if (Object.keys(items).length === 0 && items.constructor === Object) {
       empty = true;
     } else {
@@ -17,7 +17,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
   const button = document.querySelector('.bookmarkbtn');
   const aggregate = document.querySelector('.aggregate');
   aggregate.addEventListener('click', function() {
-    chrome.tabs.create({url: '/options/index.html'});
+    browser.tabs.create({url: '/options/index.html'});
   })
   button.addEventListener('click', function() {
   const completed = document.getElementById('done').checked;
@@ -28,7 +28,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
   let difficulty = false;
   if(document.querySelector('.container input:checked'))
     difficulty = document.querySelector('.container input:checked').value;
-    chrome.tabs.sendMessage(tabs[0].id, {'type': "addData", 'empty': empty, 'done': completed, 'val': val, 'difficulty': difficulty, 'timeCompleted': timeCompleted});
+    browser.tabs.sendMessage(tabs[0].id, {'type': "addData", 'empty': empty, 'done': completed, 'val': val, 'difficulty': difficulty, 'timeCompleted': timeCompleted});
     window.location.reload();
   });
   return true;

@@ -1,5 +1,5 @@
 const updater = () => {
-  chrome.storage.sync.get(['ctftime'], function (items) {
+  browser.storage.sync.get(['ctftime'], function (items) {
     let fakeData = items['ctftime'];
 
     const addData = (data) => {
@@ -61,7 +61,7 @@ const updater = () => {
             }
             m.push({'url': data[i]['url'], 'difficulty': checkIfPresent(data[i], 'difficulty'), 'done': checkIfPresent(data[i], 'done'), 'timeCompleted': data[i]['timeCompleted'], 'title': data[i]['title']}) 
           }
-          chrome.storage.sync.set({'ctftime': m});
+          browser.storage.sync.set({'ctftime': m});
           window.location.reload();
         } catch {
           alert("File error. Retry");
@@ -142,7 +142,7 @@ const updater = () => {
 							}
               return val;
             });
-            chrome.storage.sync.set({ ['ctftime']: newData });
+            browser.storage.sync.set({ ['ctftime']: newData });
             window.location.reload();
           });
         });
@@ -155,7 +155,7 @@ const updater = () => {
             const newData = fakeData.filter((val) => {
               return val.url !== urlOfEntry;
             });
-            chrome.storage.sync.set({ ['ctftime']: newData });
+            browser.storage.sync.set({ ['ctftime']: newData });
             window.location.reload();
           });
         });

@@ -6,15 +6,15 @@ __Made by group 9__
 
 A extension for tracking the write-ups on [CTF-Time](https://ctftime.org/).
 
-## Adding the Chrome Extension
+## Adding the Firefox Extension
 
-- Clone/ download the repository.
+- Clone/download the repository.
 
-- Go to [Chrome Extensions ](chrome://extensions)(page)
+- Open the about:debugging page, and click on "This Firefox"
 
-- Select Load Unpacked Option
+- Click on **Load Temporary Add-on** and select the cloned folder
 
-- Select the folder where you have cloned the repository.
+**NOTE: Until release, the extension is not persistent between sessions, and has to be reloaded every time the browser is**
 
 ## Usage
 
