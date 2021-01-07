@@ -1,7 +1,6 @@
 const updater = () => {
   chrome.storage.sync.get(['ctftime'], function (items) {
     let fakeData = items['ctftime'];
-    console.log(fakeData);
 
     const addData = (data) => {
       const ans = data.reduce(
@@ -19,8 +18,54 @@ const updater = () => {
     </tr>`),
         ''
       );
+      const download = document.querySelector('.download');
+      download.addEventListener('click', () => {
+        let m = JSON.stringify(fakeData);
+        const a = document.createElement('a');
+        a.setAttribute('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(m));
+        a.download = 'ctftime.json';
+        a.click();
+        URL.revokeObjectURL(a.href);
+      });
       return ans;
     };
+
+    function checkIfPresent(obj, prop) {
+      if(obj.hasOwnProperty(prop)) {
+        console.log(obj[prop]);
+        return obj[prop];
+      }
+      return null;
+    }
+    const upload = document.querySelector('.upload');
+    upload.addEventListener('click', () => {
+      let files = document.getElementById('selectFiles').files;
+      if(files.length <= 0) {
+        alert("Select a file first");
+        return false;
+      }
+      const fr = new FileReader();
+      fr.addEventListener('load', (event) => {
+        const val = event.target.result;
+        try {
+          const data = JSON.parse(val);
+          let m = new Array();
+          for(i in data) {
+            if(!(data[i].hasOwnProperty('url')) || !(data[i].hasOwnProperty('timeCompleted'))) {
+              alert("One or more of the objects lacks an url or date. Kindly provide a valid file");
+              return false;
+            }
+            m.push({'url': data[i]['url'], 'difficulty': checkIfPresent(data[i], 'difficulty'), 'done': checkIfPresent(data[i], 'done'), 'timeCompleted': data[i]['timeCompleted'], 'title': data[i]['title']}) 
+          }
+          chrome.storage.sync.set({'ctftime': m});
+          window.location.reload();
+        } catch {
+          alert("File error. Retry");
+          return false;
+        }
+      });
+      fr.readAsText(files[0]);
+    });
 
     document.querySelector('#table-body').innerHTML = addData(fakeData);
 
