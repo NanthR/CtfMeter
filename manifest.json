@@ -5,6 +5,10 @@
     "content_scripts": [{
         "matches": ["*://ctftime.org/writeup/*"],
         "js": ["script.js"]
+      },
+      {
+        "matches": ["*://ctftime.org/*"],
+        "js": ["strikeOff.js"]
       }],
       "browser_action": {
         "default_title": "Geeks",
