@@ -33,6 +33,10 @@ const updater = () => {
         )
       );
 
+    const filters = {
+      difficulty: ['easy', 'medium', 'difficult'],
+      done: [true, false],
+    };
     document
       .querySelectorAll('#filter .category input')
       .forEach((inp, index) => {
@@ -55,18 +59,22 @@ const updater = () => {
         });
       });
 
-    const filters = {
-      difficulty: ['easy', 'medium', 'hard'],
-      done: [true, false],
-    };
-
     const filterElements = () => {
-      const filteredData = fakeData.filter((d) => {
-        let bool = true;
-        if (!filters.difficulty.includes(d.difficulty)) bool = false;
-        if (!filters.done.includes(d.done)) bool = false;
-        return bool;
+      const filteredData = fakeData.filter((data) => {
+        // let bool = true;
+        // if (!filters.difficulty.includes(d.difficulty)) bool = false;
+        // if (!filters.done.includes(d.done)) bool = false;
+        // return bool;
+        return (
+          filters.difficulty.some((val) => {
+            return val == data.difficulty;
+          }) &&
+          filters.done.some((val) => {
+            return val == data.done;
+          })
+        );
       });
+      console.log(filteredData);
       document.querySelector('#table-body').innerHTML = addData(filteredData);
     };
 
