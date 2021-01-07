@@ -1,75 +1,6 @@
-// class Writeup {
-//   title;
-//   url;
-
-// }
-
-// chrome.storage.sync.get(["key"], function (result) {
-//   console.log("Value currently is " + result.key);
-// });
-
-const fakeData = [
-  {
-    url: "https://google.co.in",
-    name: "Bookmark 1",
-    finished: false,
-    difficulty: "hard", // hard / medium / easy
-  },
-  {
-    url: "https://google.co.in",
-    name: "Bookmark 2",
-    finished: true,
-    difficulty: "easy", // hard / medium / easy
-  },
-  {
-    url: "https://google.co.in",
-    name: "Bookmark 3",
-    finished: false,
-    difficulty: "medium", // hard / medium / easy
-  },
-  {
-    url: "https://google.co.in",
-    name: "Bookmark 4",
-    finished: true,
-    difficulty: "easy", // hard / medium / easy
-  },
-  {
-    url: "https://google.co.in",
-    name: "Bookmark 5",
-    finished: false,
-    difficulty: "hard", // hard / medium / easy
-  },
-  {
-    url: "https://google.co.in",
-    name: "Bookmark 6",
-    finished: false,
-    difficulty: "hard", // hard / medium / easy
-  },
-  {
-    url: "https://google.co.in",
-    name: "Bookmark 7",
-    finished: false,
-    difficulty: "hard", // hard / medium / easy
-  },
-  {
-    url: "https://google.co.in",
-    name: "Bookmark 8",
-    finished: false,
-    difficulty: "hard", // hard / medium / easy
-  },
-  {
-    url: "https://google.co.in",
-    name: "Bookmark 9",
-    finished: false,
-    difficulty: "hard", // hard / medium / easy
-  },
-  {
-    url: "https://google.co.in",
-    name: "Bookmark 10",
-    finished: false,
-    difficulty: "hard", // hard / medium / easy
-  },
-];
+chrome.storage.sync.get(['ctftime'], function(items) {
+  let fakeData = items['ctftime'];
+  console.log(fakeData);
 
 const addData = (data) => {
   const ans = data.reduce(
@@ -77,12 +8,12 @@ const addData = (data) => {
       (str += `<tr>
       <td>${index + 1}</td>
       <td><a href="${d.url}" target="_blank" rel="noopener noreferrer">${
-        d.name
+        d.title
       }</a> <span class="delete-button"><img src="./assets/delete.svg" alt="" height="18px" width="18px"></span></td>
       <td>${d.difficulty}</td>
-      <td class="${d.finished ? "green" : "red"}" data-status= 'Mark as ${
-        d.finished ? "un-done" : "done"
-      }'>${d.finished ? "&#10003" : "&#10005"}</td>
+      <td class="${d.done ? "green" : "red"}" data-status= 'Mark as ${
+        d.done ? "un-done" : "done"
+      }'>${d.done ? "&#10003" : "&#10005"}</td>
     </tr>`),
     ""
   );
@@ -110,8 +41,8 @@ document.querySelectorAll("#filter .category input").forEach((inp, index) => {
     } else {
       let bool = this.name == "done" ? true : false;
       this.checked
-        ? filters.finished.push(bool)
-        : filters.finished.splice(filters.finished.indexOf(bool), 1);
+        ? filters.done.push(bool)
+        : filters.done.splice(filters.done.indexOf(bool), 1);
     }
     console.log(filters);
     filterElements();
@@ -120,14 +51,14 @@ document.querySelectorAll("#filter .category input").forEach((inp, index) => {
 
 const filters = {
   difficulty: ["easy", "medium", "hard"],
-  finished: [true, false],
+  done: [true, false],
 };
 
 const filterElements = () => {
   const filteredData = fakeData.filter((d) => {
     let bool = true;
     if (!filters.difficulty.includes(d.difficulty)) bool = false;
-    if (!filters.finished.includes(d.finished)) bool = false;
+    if (!filters.done.includes(d.done)) bool = false;
     return bool;
   });
   document.querySelector("#table-body").innerHTML = addData(filteredData);
@@ -152,3 +83,6 @@ const handleUpdates = () => {
       });
     });
 };
+
+});
+
