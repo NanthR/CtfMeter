@@ -131,7 +131,11 @@ const updater = () => {
           elem.addEventListener('click', function () {
             const urlOfEntry = elem.parentElement.children[1].children[0].href;
             const newData = fakeData.map((val) => {
-              if (val.url == urlOfEntry) val.done = !val.done;
+              if (val.url == urlOfEntry) {
+								val.done = !val.done;
+								if (val.timeCompleted=== '----') val.timeCompleted = getDateTime();
+								else val.timeCompleted =  '----';
+							}
               return val;
             });
             chrome.storage.sync.set({ ['ctftime']: newData });
@@ -156,3 +160,33 @@ const updater = () => {
   });
 };
 updater();
+
+
+
+
+function getDateTime() {
+  var now     = new Date(); 
+  var year    = now.getFullYear();
+  var month   = now.getMonth()+1; 
+  var day     = now.getDate();
+  var hour    = now.getHours();
+  var minute  = now.getMinutes();
+  var second  = now.getSeconds(); 
+  if(month.toString().length == 1) {
+       month = '0'+month;
+  }
+  if(day.toString().length == 1) {
+       day = '0'+day;
+  }   
+  if(hour.toString().length == 1) {
+       hour = '0'+hour;
+  }
+  if(minute.toString().length == 1) {
+       minute = '0'+minute;
+  }
+  if(second.toString().length == 1) {
+       second = '0'+second;
+  }   
+  var dateTime = year+'/'+month+'/'+day+' '+hour+':'+minute+':'+second;   
+   return dateTime;
+}
