@@ -16,6 +16,10 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     }
   });
   const button = document.querySelector('.bookmarkbtn');
+  const aggregate = document.querySelector('.aggregate');
+  aggregate.addEventListener('click', function() {
+    chrome.tabs.create({url: '/options/index.html'});
+  })
   button.addEventListener('click', function() {
   const completed = document.getElementById('done').checked;
   let difficulty = false;
