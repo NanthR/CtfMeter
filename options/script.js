@@ -89,9 +89,7 @@ const updater = () => {
               return val;
             });
             chrome.storage.sync.set({ ['ctftime']: newData });
-            updater();
-            // console.log(this);
-            // // Change element
+            window.location.reload();
           });
         });
 
@@ -104,7 +102,7 @@ const updater = () => {
               return val.url !== urlOfEntry;
             });
             chrome.storage.sync.set({ ['ctftime']: newData });
-            updater();
+            window.location.reload();
           });
         });
     };
