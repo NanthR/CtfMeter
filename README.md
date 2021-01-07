@@ -1,4 +1,4 @@
-# Geekometer
+# ~~Geekometer~~ CTF-METER
 __Made by group 9__
 
 
